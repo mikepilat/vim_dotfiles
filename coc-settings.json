@@ -1,0 +1,43 @@
+{
+  "coc": {
+    "preferences": {
+      "bracketEnterImprove": false,
+      "enableFloatHighlight": false,
+      "extensionUpdateCheck": "never",
+      "formatOnSaveFiletypes": [
+        "elixir"
+      ],
+      "hoverTarget": "preview",
+      "previewAutoClose": false,
+      "diagnostic": {
+        "checkCurrentLine": true
+      },
+      "snippets": {
+        "enable": false
+      }
+    }
+  },
+  "signature": {
+    "enable": false
+  },
+  "suggest": {
+    "autoTrigger": "none"
+  },
+  "languageserver": {
+    "elixir": {
+      "command": "~/code/elixir-ls/language_server.sh",
+      "filetypes": ["elixir", "eelixir"],
+      "rootPatterns": ["mix.exs"]
+    }
+  },
+  "list": {
+    "insertMappings": {
+      "<C-n>": "normal:j",
+      "<C-p>": "normal:k"
+    },
+    "normalMappings": {
+      "<C-n>": "normal:j",
+      "<C-p>": "normal:k"
+    }
+  }
+}
