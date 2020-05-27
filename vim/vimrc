@@ -1,4 +1,19 @@
+set nocompatible
 syntax on
+
+call plug#begin('~/.vim/plugged')
+Plug 'dense-analysis/ale', {'tag': 'v2.6.0'}
+Plug 'jlanzarotta/bufexplorer', {'commit': '29258f58357acc10c672585a9efe8913d756734d'}
+Plug 'neoclide/coc.nvim', {'tag': 'v0.0.78'}
+Plug 'junegunn/fzf', {'tag': '0.21.1', 'dir': '~/.fzf', 'do': './install --bin'} | Plug 'junegunn/fzf.vim', {'commit': '7a655179a43cd431862a2bf5d297d9e55fd3f814'}
+Plug 'preservim/nerdtree', {'tag': '6.7.15'}
+Plug 'elixir-editors/vim-elixir', {'commit': '53c530f79cfcd12498e31fcf8ecc466eba34c75c'}
+Plug 'jparise/vim-graphql', {'commit': 'a3ff39f955e60baeddd8c3c4d1cab291ce37d66e'}
+Plug 'vim-test/vim-test', {'commit': 'b882783760b954144dda5be7ad6cd4bdefd013fb'}
+Plug 'benmills/vimux', {'commit': '37f41195e6369ac602a08ec61364906600b771f1'}
+call plug#end()
+
+
 filetype plugin indent on
 
 set dir=/tmp//
@@ -50,8 +65,6 @@ nnoremap <silent> <Leader>gw :GitGrepWord<CR>
 " ale
 let g:ale_fixers = {
       \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \   'purescript': ['purty'],
-      \   'typescript': ['prettier'],
       \}
 
 let g:ale_fix_on_save = 1
