@@ -5,7 +5,10 @@
       "enableFloatHighlight": false,
       "extensionUpdateCheck": "never",
       "formatOnSaveFiletypes": [
-        "elixir"
+        "elixir",
+        "javascript",
+        "javascriptreact",
+        "css"
       ],
       "hoverTarget": "preview",
       "previewAutoClose": false,
@@ -25,7 +28,7 @@
   },
   "languageserver": {
     "elixir": {
-      "command": "~/code/elixir-ls/language_server.sh",
+      "command": "~/code/elixir-ls/release/language_server.sh",
       "filetypes": ["elixir", "eelixir"],
       "rootPatterns": ["mix.exs"]
     }
@@ -39,5 +42,8 @@
       "<C-n>": "normal:j",
       "<C-p>": "normal:k"
     }
-  }
+  },
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "prettier.disableSuccessMessage": true,
 }

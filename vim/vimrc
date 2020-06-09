@@ -11,6 +11,11 @@ Plug 'elixir-editors/vim-elixir', {'commit': '53c530f79cfcd12498e31fcf8ecc466eba
 Plug 'jparise/vim-graphql', {'commit': 'a3ff39f955e60baeddd8c3c4d1cab291ce37d66e'}
 Plug 'vim-test/vim-test', {'commit': 'b882783760b954144dda5be7ad6cd4bdefd013fb'}
 Plug 'benmills/vimux', {'commit': '37f41195e6369ac602a08ec61364906600b771f1'}
+Plug 'pangloss/vim-javascript', {'commit': '3c90d0cc37bb8b78422f647e62587f498a5dd7bd'}
+Plug 'MaxMEllon/vim-jsx-pretty', {'commit': '496c44d89281d1e13c9bb4c75a2e69daba48b47b'}
+Plug 'neoclide/coc-tsserver', {'commit': 'bac002caef532d6dc58c10a2885eeed463082d4f'}
+Plug 'neoclide/coc-prettier'
+Plug 'neoclide/coc-eslint'
 call plug#end()
 
 
@@ -58,6 +63,7 @@ function! GitGrepWord()
   cgetexpr system("git grep -n '" . expand("<cword>") . "'")
   cwin
   echo 'Number of matches: ' . len(getqflist())
+
 endfunction
 command! -nargs=0 GitGrepWord :call GitGrepWord()
 nnoremap <silent> <Leader>gw :GitGrepWord<CR>
@@ -77,6 +83,12 @@ let ls_langs = 'elixir'
 execute 'autocmd Filetype ' . ls_langs . ' inoremap <silent><expr> <C-X><C-O> coc#refresh()'
 execute 'autocmd Filetype ' . ls_langs . ' nmap <C-]> <Plug>(coc-definition)'
 execute 'autocmd Filetype ' . ls_langs . ' nnoremap <silent> K :call CocAction(''doHover'')<CR>'
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <leader>do <Plug>(coc-codeaction)
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 inoremap <silent><expr> <c-space> coc#refresh()
