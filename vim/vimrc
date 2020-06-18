@@ -13,9 +13,8 @@ Plug 'vim-test/vim-test', {'commit': 'b882783760b954144dda5be7ad6cd4bdefd013fb'}
 Plug 'benmills/vimux', {'commit': '37f41195e6369ac602a08ec61364906600b771f1'}
 Plug 'pangloss/vim-javascript', {'commit': '3c90d0cc37bb8b78422f647e62587f498a5dd7bd'}
 Plug 'MaxMEllon/vim-jsx-pretty', {'commit': '496c44d89281d1e13c9bb4c75a2e69daba48b47b'}
-Plug 'neoclide/coc-tsserver', {'commit': 'bac002caef532d6dc58c10a2885eeed463082d4f'}
-Plug 'neoclide/coc-prettier'
-Plug 'neoclide/coc-eslint'
+Plug 'vmchale/dhall-vim', {'commit': '607958520f8bd4308fe52937e211f6db4ad84cf3'}
+Plug 'tpope/vim-fugitive', {'commit': '27a5c3abd211c2784513dab4db082fa414ad0967'}
 call plug#end()
 
 
@@ -79,19 +78,21 @@ let g:ale_lint_on_text_changed = 0
 let g:ale_linters_explicit = 1
 
 " coc
-let ls_langs = 'elixir'
+let ls_langs = 'elixir,dhall,terraform'
 execute 'autocmd Filetype ' . ls_langs . ' inoremap <silent><expr> <C-X><C-O> coc#refresh()'
 execute 'autocmd Filetype ' . ls_langs . ' nmap <C-]> <Plug>(coc-definition)'
-execute 'autocmd Filetype ' . ls_langs . ' nnoremap <silent> K :call CocAction(''doHover'')<CR>'
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <leader>do <Plug>(coc-codeaction)
+nmap <leader>rn <Plug>(coc-rename)
 autocmd CursorHold * silent call CocActionAsync('highlight')
+execute 'autocmd Filetype ' . ls_langs . ' nnoremap <silent> K :call CocActionAsync(''doHover'')<CR>'
 
 inoremap <silent><expr> <c-space> coc#refresh()
+
 
 " fzf
 let $FZF_DEFAULT_COMMAND = 'find * -type f 2>/dev/null | grep -v -E "deps\/|_build\/|node_modules\/|vendor\/|build_intellij\/|output\/"'
@@ -102,3 +103,50 @@ map <silent> <leader>fg :GFiles<CR>
 map <silent> <leader>fb :Buffers<CR>
 map <silent> <leader>ft :Tags<CR>
 map <silent> <LocalLeader>rt :!ctags -R --exclude=".git" --exclude="node_modules" --exclude="vendor" --exclude="log" --exclude="tmp" --exclude="db" --exclude="pkg" --exclude="deps" --exclude="_build" --extra=+f .<CR>
+
+
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatusDiagnostic() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  let msgs = []
+  if get(info, 'error', 0)
+    call add(msgs, 'E' . info['error'])
+  endif
+  if get(info, 'warning', 0)
+    call add(msgs, 'W' . info['warning'])
+  endif
+  return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
+endfunction
+
+set laststatus=2
+
+set statusline=
+set statusline+=%#PMenuSel#
+set statusline+=\ %{GitBranch()}
+set statusline+=\ %#LineNr#
+
+set statusline+=%#WarningMsg#
+set statusline+=\ %m " modified warning
+set statusline+=%#LineNr#
+
+set statusline+=%f " filename
+set statusline+=\ %y " filetype
+
+set statusline+=%= " left/right align
+
+set statusline+=%{coc#status()}
+set statusline+=\ %*
+
+"display a warning if &paste is set
+set statusline+=%#error#
+set statusline+=%{&paste?'[paste]':''}
+set statusline+=%*
+set statusline+=%#LineNr#
+
+set statusline+=%#PMenuSel#
+set statusline+=\ %l,%c " line,column
+set statusline+=\ %*

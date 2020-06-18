@@ -5,10 +5,13 @@
       "enableFloatHighlight": false,
       "extensionUpdateCheck": "never",
       "formatOnSaveFiletypes": [
+        "css",
+        "dhall",
         "elixir",
         "javascript",
         "javascriptreact",
-        "css"
+        "terraform",
+        "tf"
       ],
       "hoverTarget": "preview",
       "previewAutoClose": false,
@@ -31,6 +34,25 @@
       "command": "~/code/elixir-ls/release/language_server.sh",
       "filetypes": ["elixir", "eelixir"],
       "rootPatterns": ["mix.exs"]
+    },
+		"terraform": {
+			"command": "~/.bin/terraform-lsp/terraform-lsp",
+			"args": ["serve"],
+			"filetypes": [
+				"terraform",
+				"tf"
+			],
+			"initializationOptions": {},
+			"settings": {}
+		},
+		"dhall": {
+      "command": "dhall-lsp-server",
+      "filetypes": ["dhall"],
+      "initializationOptions": {
+        "vscode-dhall-lsp-server": {
+          "asciiOnly": true
+        }
+      }
     }
   },
   "list": {
@@ -45,5 +67,5 @@
   },
   "eslint.autoFixOnSave": true,
   "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-  "prettier.disableSuccessMessage": true,
+  "prettier.disableSuccessMessage": true
 }
