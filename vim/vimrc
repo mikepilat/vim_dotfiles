@@ -2,19 +2,18 @@ set nocompatible
 syntax on
 
 call plug#begin('~/.vim/plugged')
-Plug 'dense-analysis/ale', {'tag': 'v2.6.0'}
+Plug 'dense-analysis/ale', {'tag': 'v3.1.0'}
 Plug 'jlanzarotta/bufexplorer', {'commit': '29258f58357acc10c672585a9efe8913d756734d'}
-Plug 'neoclide/coc.nvim', {'tag': 'v0.0.78'}
-Plug 'junegunn/fzf', {'tag': '0.21.1', 'dir': '~/.fzf', 'do': './install --bin'} | Plug 'junegunn/fzf.vim', {'commit': '7a655179a43cd431862a2bf5d297d9e55fd3f814'}
-Plug 'preservim/nerdtree', {'tag': '6.7.15'}
+Plug 'neoclide/coc.nvim', {'tag': 'v0.0.80'}
+Plug 'junegunn/fzf', {'tag': '0.26.0', 'dir': '~/.fzf', 'do': './install --bin'} | Plug 'junegunn/fzf.vim', {'commit': '1ef72b14ccd05fdbdb01d253b91a74c4760ae655'}
+Plug 'preservim/nerdtree', {'tag': '6.10.8'}
 Plug 'elixir-editors/vim-elixir', {'commit': '53c530f79cfcd12498e31fcf8ecc466eba34c75c'}
 Plug 'jparise/vim-graphql', {'commit': 'a3ff39f955e60baeddd8c3c4d1cab291ce37d66e'}
-Plug 'vim-test/vim-test', {'commit': 'b882783760b954144dda5be7ad6cd4bdefd013fb'}
-Plug 'benmills/vimux', {'commit': '37f41195e6369ac602a08ec61364906600b771f1'}
+Plug 'vim-test/vim-test', {'commit': 'f5619460b77b9b444311aa3b6f31ecd9ffdaa6d8'}
+Plug 'preservim/vimux', {'commit': '708ce200d56d6fc326a8c1acd7f0f4f7c6a9e552'}
 Plug 'pangloss/vim-javascript', {'commit': '3c90d0cc37bb8b78422f647e62587f498a5dd7bd'}
 Plug 'MaxMEllon/vim-jsx-pretty', {'commit': '496c44d89281d1e13c9bb4c75a2e69daba48b47b'}
-Plug 'vmchale/dhall-vim', {'commit': '607958520f8bd4308fe52937e211f6db4ad84cf3'}
-Plug 'tpope/vim-fugitive', {'commit': '27a5c3abd211c2784513dab4db082fa414ad0967'}
+Plug 'tpope/vim-fugitive', {'commit': '58d2b25836f420cf2fe20cc0b6f988165ae33782'}
 call plug#end()
 
 
