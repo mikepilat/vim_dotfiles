@@ -120,32 +120,3 @@ function! StatusDiagnostic() abort
   endif
   return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
 endfunction
-
-set laststatus=2
-
-set statusline=
-set statusline+=%#PMenuSel#
-set statusline+=\ %{GitBranch()}
-set statusline+=\ %#LineNr#
-
-set statusline+=%#WarningMsg#
-set statusline+=\ %m " modified warning
-set statusline+=%#LineNr#
-
-set statusline+=%f " filename
-set statusline+=\ %y " filetype
-
-set statusline+=%= " left/right align
-
-set statusline+=%{coc#status()}
-set statusline+=\ %*
-
-"display a warning if &paste is set
-set statusline+=%#error#
-set statusline+=%{&paste?'[paste]':''}
-set statusline+=%*
-set statusline+=%#LineNr#
-
-set statusline+=%#PMenuSel#
-set statusline+=\ %l,%c " line,column
-set statusline+=\ %*
